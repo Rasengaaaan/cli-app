@@ -1,0 +1,14 @@
+D:\Visual studio code\cli-app\bin\Debug\net9.0\cli-app.exe
+D:\Visual studio code\cli-app\bin\Debug\net9.0\cli-app.deps.json
+D:\Visual studio code\cli-app\bin\Debug\net9.0\cli-app.runtimeconfig.json
+D:\Visual studio code\cli-app\bin\Debug\net9.0\cli-app.dll
+D:\Visual studio code\cli-app\bin\Debug\net9.0\cli-app.pdb
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.AssemblyInfoInputs.cache
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.AssemblyInfo.cs
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.csproj.CoreCompileInputs.cache
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.dll
+D:\Visual studio code\cli-app\obj\Debug\net9.0\refint\cli-app.dll
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.pdb
+D:\Visual studio code\cli-app\obj\Debug\net9.0\cli-app.genruntimeconfig.cache
+D:\Visual studio code\cli-app\obj\Debug\net9.0\ref\cli-app.dll
