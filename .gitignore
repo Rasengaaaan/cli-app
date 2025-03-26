@@ -1,0 +1,6 @@
+# Ignore build directories
+bin/
+obj/
+
+# Visual Studio Code settings
+.vscode/
