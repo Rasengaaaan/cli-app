@@ -3,22 +3,9 @@ using System;
 using System.IO;
 using System.Linq;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        CoconaApp.Run<MainCommands>(args);
-    }
-}
+CoconaApp.Run<MainCommands>();
 
-// Define a main command group
-[HasSubCommands(typeof(HostsCommand), "hosts")]
 class MainCommands
-{
-}
-
-// Define the subcommand for "hosts"
-class HostsCommand
 {
     private const string BaseFilePath = @"C:\Windows\System32\drivers\etc\HOSTS";
     private const string BackupFolder = @"C:\Windows\System32\drivers\etc\backups"; // Backup folder
@@ -26,7 +13,6 @@ class HostsCommand
     [Command("set")]
     public void Set([Option("ip")] string ip, [Option('a')] string hostname)
     {
-
         string newEntry = $"{ip} {hostname}";
         string[] existingLines = File.Exists(BaseFilePath) ? File.ReadAllLines(BaseFilePath) : Array.Empty<string>();
 
