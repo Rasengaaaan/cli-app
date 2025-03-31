@@ -60,6 +60,70 @@ public class HostsFileManager
         }
     }
 
+// Method to remove a host entry from the HOSTS file
+    public void RemoveHostEntry(string hostname)
+    {
+        if (!File.Exists(_hostsFilePath))
+        {
+            Console.WriteLine("HOSTS file not found.");
+            return;
+        }
+
+        string[] existingLines = File.ReadAllLines(_hostsFilePath);
+        string[] updatedLines = existingLines.Where(line => !line.EndsWith(" " + hostname)).ToArray();
+
+        if (existingLines.Length == updatedLines.Length)
+        {
+            Console.WriteLine("No matching entry found to remove.");
+            return;
+        }
+
+        CreateBackupFile();
+        File.WriteAllLines(_hostsFilePath, updatedLines);
+        Console.WriteLine("HOSTS entry removed successfully.");
+    }
+    
+ // Method to restore a specific or latest backup of the HOSTS file
+    public void RestoreBackup(string? backupFilePath)
+    {
+        if (!string.IsNullOrEmpty(backupFilePath))
+        {
+            string resolvedBackupPath = Path.IsPathRooted(backupFilePath) 
+                ? backupFilePath 
+                : Path.Combine(_backupFolderPath, backupFilePath);
+            
+            if (!File.Exists(resolvedBackupPath))
+            {
+                Console.WriteLine($"Specified backup file not found: {resolvedBackupPath}");
+                return;
+            }
+            File.Copy(resolvedBackupPath, _hostsFilePath, true);
+            Console.WriteLine($"HOSTS file restored from specified backup: {resolvedBackupPath}");
+        }
+        else
+        {
+            if (!Directory.Exists(_backupFolderPath))
+            {
+                Console.WriteLine("No backup folder found.");
+                return;
+            }
+
+            var backupFiles = Directory.GetFiles(_backupFolderPath, "HOSTS_*.txt")
+                                       .OrderByDescending(File.GetCreationTime)
+                                       .ToList();
+
+            if (!backupFiles.Any())
+            {
+                Console.WriteLine("No backup files found.");
+                return;
+            }
+
+            string latestBackup = backupFiles.First();
+            File.Copy(latestBackup, _hostsFilePath, true);
+            Console.WriteLine($"HOSTS file restored from latest backup: {latestBackup}");
+        }
+    }
+
     // Method to create a backup of the existing HOSTS file before modification
     private void CreateBackupFile()
     {
